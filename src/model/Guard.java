@@ -9,8 +9,10 @@ public class Guard {
 	int breakout2;
 	int breakin2;
 	int outtime;
-	String status;
-	String position;
+	String status;//on break, on rotation, home, ect..
+	
+	Position position; //which position?
+	Rotation rotation; //which rotation?
 	
 //
 // Initialize Guard
@@ -80,7 +82,7 @@ public class Guard {
 //
 // Position
 //
-	public void setPosition (String pos) {
+	public void setPosition (Position pos) {
 		position = pos;
 	}
 	

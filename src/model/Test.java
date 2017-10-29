@@ -12,7 +12,8 @@ public class Test {
 		System.out.println(quinn.name + " is " + quinn.status);
 		System.out.println(brad.name + " is " + brad.status);
 		
-		Rotation one = new Rotation();
+		//Rotation one = new Rotation();
+		//this now needs a name, age req, list of positions, and list of guards to initialize
 
 	}
 
