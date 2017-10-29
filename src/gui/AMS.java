@@ -1,11 +1,13 @@
 package gui;
 
+// AMS AMS = new AMS();
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
-public class AMS extends JPanel{	
+public class AMS extends JFrame{	
 
 	// Please keep these organized
 	
@@ -25,6 +27,16 @@ public class AMS extends JPanel{
 	
 	JPanel breaks;
 	JButton send;
+	
+	JPanel notifications;
+	JLabel notificationLabel;
+	
+	
+	public static void main (String[] args) {
+
+		AMS AMS = new AMS();
+		
+	}
 	
 	public AMS() {
 		
@@ -81,11 +93,25 @@ public class AMS extends JPanel{
 			send = new JButton();
 			send.setText("Send");
 			breaks.add(send);
-		
+			
+		// Notification Panel
+			notifications = new JPanel();
+			notifications.setBackground(Color.gray);
+			notifications.setPreferredSize(new Dimension(x/4, y));
+			
+			notificationLabel = new JLabel();
+			notificationLabel.setText("Notifications");
+			notificationLabel.setFont(new Font("Garamond", Font.PLAIN, x/50));
+			
+			notifications.add(notificationLabel, BorderLayout.NORTH);
+			
+			
 		// Add tabs to frame
 		f.add(t);
+		f.add(notifications, BorderLayout.EAST);
 		
 		f.setVisible(true);
+		f.setResizable(false);
 		f.setLocationRelativeTo(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
