@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class AMS extends JFrame{	
 
@@ -22,8 +23,11 @@ public class AMS extends JFrame{
 	JButton home;
 	
 	JPanel breaks;
+	JPanel ctrl;
+	JPanel sched;
 	JComboBox sendwho;
 	JButton send;
+	JTable table;
 	
 	JPanel notifications;
 	JLabel notificationLabel;
@@ -87,14 +91,32 @@ public class AMS extends JFrame{
 			breaks = new JPanel();
 			t.addTab("Breaks", breaks);
 			
+			ctrl = new JPanel();
+			sched = new JPanel();
+			breaks.add(ctrl, BorderLayout.NORTH);
+			breaks.add(sched, BorderLayout.SOUTH);
+			
 			String[] guards = {"Brad", "Hannah", "Jean", "Kevin", "Quinn"};
 			sendwho = new JComboBox(guards);
-			sendwho.setToolTipText("Choose which guard to send on break");
-			breaks.add(sendwho);
+			sendwho.setPreferredSize(new Dimension(140, 22));
+			ctrl.add(sendwho);
 			
 			send = new JButton();
 			send.setText("Send");
-			breaks.add(send);
+			ctrl.add(send);
+			
+			table = new JTable();
+			table.setModel(new DefaultTableModel(
+				new Object[][] {
+					{null, null},
+					{null, null},
+					{null, null},
+				},
+				new String[] {
+					"...", "Break"
+				}
+			));
+			sched.add(table);
 			
 		// Notification Panel
 			notifications = new JPanel();
