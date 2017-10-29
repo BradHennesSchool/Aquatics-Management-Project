@@ -41,7 +41,7 @@ public class AMS extends JFrame{
 	
 	public AMS() {
 		
-		JFrame f = new JFrame("Aquatics Management System");
+		JFrame f = new JFrame("Aquatics Lifeguard Management System");
 		f.setLayout(new BorderLayout());
 		
 		Toolkit tk = Toolkit.getDefaultToolkit();
