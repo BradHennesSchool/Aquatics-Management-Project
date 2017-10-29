@@ -22,6 +22,7 @@ public class AMS extends JFrame{
 	JButton home;
 	
 	JPanel breaks;
+	JComboBox sendwho;
 	JButton send;
 	
 	JPanel notifications;
@@ -85,6 +86,11 @@ public class AMS extends JFrame{
 		// Breaks Tab
 			breaks = new JPanel();
 			t.addTab("Breaks", breaks);
+			
+			String[] guards = {"Brad", "Hannah", "Jean", "Kevin", "Quinn"};
+			sendwho = new JComboBox(guards);
+			sendwho.setToolTipText("Choose which guard to send on break");
+			breaks.add(sendwho);
 			
 			send = new JButton();
 			send.setText("Send");
