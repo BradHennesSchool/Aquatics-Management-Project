@@ -1,10 +1,6 @@
 package gui;
 
-// AMS AMS = new AMS();
-
 import java.awt.*;
-import java.awt.event.KeyEvent;
-
 import javax.swing.*;
 
 public class AMS extends JFrame{	
