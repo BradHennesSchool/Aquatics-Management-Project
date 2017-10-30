@@ -1,15 +1,23 @@
 package gui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class AMS extends JFrame{	
+public class AMS extends JFrame implements ActionListener {	
 
 	// Please keep these organized
 	
 	JFrame f;
 	JTabbedPane t;
+	
+	JPanel timePanel;
+	JLabel time;
 	
 	JPanel rotations;
 	JButton replace;
@@ -48,6 +56,15 @@ public class AMS extends JFrame{
 		int x = ((int) tk.getScreenSize().getWidth());
 		int y = ((int) tk.getScreenSize().getHeight());
 		f.setSize(x, y);
+		
+		timePanel = new JPanel();
+		f.add(timePanel, BorderLayout.SOUTH);
+		
+		time = new JLabel();
+		time.setText(currentTime());
+		timePanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+		timePanel.add(time, FlowLayout.LEFT);
+		
 		
 		JTabbedPane t = new JTabbedPane();
 		
@@ -141,5 +158,19 @@ public class AMS extends JFrame{
 		
 		
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	// Not working yet, I want to implement an updating real-time clock.
+	public String currentTime() {
+		Date d = new Date();
+		return d.toString();
+	}
+	
 }
 
