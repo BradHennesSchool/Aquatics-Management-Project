@@ -1,7 +1,8 @@
 package model;
 
 public class Guard {
-	String name;
+	String firstName;
+	String lastName;
 	int age;
 	int intime;
 	int breakout1;
@@ -17,8 +18,9 @@ public class Guard {
 //
 // Initialize Guard
 //
-	public Guard (String name, int age) {
-		this.name = name;
+	public Guard (String firstName, String lastName, int age) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.age = age;
 	}
 	
