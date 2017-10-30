@@ -152,7 +152,7 @@ public class AMS extends JFrame implements ActionListener {
 		f.add(notifications, BorderLayout.EAST);
 		
 		f.setVisible(true);
-		f.setResizable(false);
+		//f.setResizable(false);
 		f.setLocationRelativeTo(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
