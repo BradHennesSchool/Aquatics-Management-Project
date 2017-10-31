@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class AMS extends JFrame implements ActionListener {	
 	
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy | hh:mm:ss a");
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy | h:mm:ss a");
 
 	// Please keep these organized
 	
