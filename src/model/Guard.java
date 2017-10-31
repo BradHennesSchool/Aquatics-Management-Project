@@ -1,7 +1,8 @@
 package model;
 
 public class Guard {
-	String name;
+	String firstName;
+	String lastName;
 	int age;
 	int intime;
 	int breakout1;
@@ -17,8 +18,9 @@ public class Guard {
 //
 // Initialize Guard
 //
-	public Guard (String name, int age) {
-		this.name = name;
+	public Guard (String firstName, String lastName, int age) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.age = age;
 	}
 	
@@ -74,8 +76,25 @@ public class Guard {
 //
 // Status
 //
-	public void setStatus (String stat) {
-		status = stat;
+	public String setStatus (int statusNumber) {
+		status = "error";
+		
+		if(statusNumber == 1){ 			// on break status number = 1
+			status = "on break";
+			return status;
+		} else if(statusNumber == 2){		// rotation status number = 2
+			status = "on rotation" + rotation.name;
+			return status;
+		} else if (statusNumber == 3){		// home status number = 3
+			status = "home";
+			return status;
+		} else if (statusNumber == 4){		// placeholder
+			status = "etc.";
+			return status;
+		}
+		else {
+		return status;	// returns error
+		}
 	}
 	
 	
