@@ -6,8 +6,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		//initialize guard objects and a linked list of guards
-		Guard quinn = new Guard("Quinn", "O'Connor", 20);
-		Guard brad = new Guard("Brad", "Hennes", 20);
+		Guard quinn = new Guard("Quinn", "O'Connor", 20, 123);
+		Guard brad = new Guard("Brad", "Hennes", 20, 1234);
 		List<Guard> guardList= new LinkedList<Guard>();
 		
 		// set status button
