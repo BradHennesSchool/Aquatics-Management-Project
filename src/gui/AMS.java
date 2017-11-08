@@ -80,12 +80,13 @@ public class AMS extends JFrame implements ActionListener {
 		
 		// Panel for time/date
 		timePanel = new JPanel();
+		timePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		f.add(timePanel, BorderLayout.NORTH);
 		
 		// Update time and date
 		time = new JLabel();			
 		timePanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-		timePanel.add(time, FlowLayout.LEFT);
+		timePanel.add(time);
 		currentTime();
 		new Timer(100, this).start();
 		
@@ -127,7 +128,7 @@ public class AMS extends JFrame implements ActionListener {
 				panels[i].add(rotationLabels[i]);
 				panels[i].add(buttons[i]);
 				
-				// set text (for initial layout)
+				// set text (for development layout)
 				timeLabels[i].setText("Time " + i);
 				rotationLabels[i].setText("Rotations " + i);
 				buttons[i].setText("Buttons " + i);
