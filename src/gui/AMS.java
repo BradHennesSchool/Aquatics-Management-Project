@@ -1,10 +1,9 @@
-	package gui;
+package gui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -13,10 +12,17 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class AMS extends JFrame implements ActionListener {	
-	
+
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy | h:mm:ss a");
 
-	// Please keep these organized
+	// Component Arrays
+	
+	JPanel[] panels = new JPanel[9];
+	JButton[] buttons = new JButton[9];
+	JLabel[] timeLabels = new JLabel[9];
+	JLabel[] rotationLabels = new JLabel[9];
+			
+	// Components: Please keep these organized
 	
 	JFrame f;
 	JTabbedPane t;
@@ -25,6 +31,7 @@ public class AMS extends JFrame implements ActionListener {
 	JLabel time;
 	
 	JPanel rotations;
+	JPanel edit;
 	JButton replace;
 	JButton find;
 	JButton undo;
@@ -45,24 +52,30 @@ public class AMS extends JFrame implements ActionListener {
 	JPanel notifications;
 	JLabel notificationLabel;
 	
-	
 	public static void main (String[] args) {
 
 		AMS AMS = new AMS();
-		
+
 	}
 	
 	public AMS() {
 		
+		// Create elements in component arrays
+		for (int i = 0; i < panels.length; i++) {
+			panels[i] = new JPanel();
+			buttons[i] = new JButton();
+			timeLabels[i] = new JLabel();
+			rotationLabels[i] = new JLabel();
+		}
 		
-		
+		// Create frame
 		JFrame f = new JFrame("Aquatics Lifeguard Management System");
 		f.setLayout(new BorderLayout());
 		
 		// Get screen resolution
 		Toolkit tk = Toolkit.getDefaultToolkit();
-		int x = ((int) tk.getScreenSize().getWidth());
-		int y = ((int) tk.getScreenSize().getHeight());
+		int x = ((int) tk.getScreenSize().getWidth())/2;
+		int y = ((int) tk.getScreenSize().getHeight())/2;
 		f.setSize(x, y);
 		
 		// Panel for time/date
@@ -80,21 +93,49 @@ public class AMS extends JFrame implements ActionListener {
 		JTabbedPane t = new JTabbedPane();
 		
 		// Rotations Tab
+			JPanel wrapper = new JPanel(new FlowLayout(x/2, y/2, FlowLayout.LEADING));
+			t.addTab("Rotations", wrapper);
+			
 			rotations = new JPanel();
-			t.addTab("Rotations", rotations);
+			rotations.setLayout(new BoxLayout(rotations, BoxLayout.PAGE_AXIS));
+			wrapper.add(rotations);
+			
+			edit = new JPanel();
 			
 			replace = new JButton();
 			replace.setText("Replace");
-			rotations.add(replace);
+			edit.add(replace);
 			
 			find = new JButton();
 			find.setText("Find");
-			rotations.add(find);
+			edit.add(find);
 			
 			undo = new JButton();
 			undo.setText("Undo");
-			rotations.add(undo);
-		
+			edit.add(undo);
+			
+			rotations.add(edit);
+			
+			// Rotation labels / panels / buttons
+			for (int i = 0; i < panels.length; i++) {
+				
+				// add panels
+				rotations.add(panels[i]);
+				
+				// add components to panels
+				panels[i].add(timeLabels[i]);
+				panels[i].add(rotationLabels[i]);
+				panels[i].add(buttons[i]);
+				
+				// set text (for initial layout)
+				timeLabels[i].setText("Time " + i);
+				rotationLabels[i].setText("Rotations " + i);
+				buttons[i].setText("Buttons " + i);
+				
+				panels[i].setVisible(true);
+	
+			}	
+			
 		// Daily Tab
 			daily = new JPanel();
 			t.addTab("Daily", daily);
@@ -163,7 +204,7 @@ public class AMS extends JFrame implements ActionListener {
 		f.add(notifications, BorderLayout.EAST);
 		
 		f.setVisible(true);
-		f.setResizable(true);
+		f.setResizable(false);
 		f.setLocationRelativeTo(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -180,4 +221,3 @@ public class AMS extends JFrame implements ActionListener {
 		time.setText(dateFormat.format(Calendar.getInstance().getTime()));
 	}
 }
-
