@@ -1,7 +1,18 @@
 package model;
 
+	// Main Author: Quinn O'Connor
+
+	// Description:
+	// Object for life guards
+	// initialized with first name, last name and age
+	// has methods for setting in and out times for 
+	//shifts and breaks, setting current status, and 
+	// also keeps track of current position and rotation
+
 public class Guard {
-	String name;
+	String firstName;
+	String lastName;
+	
 	int age;
 	int intime;
 	int breakout1;
@@ -9,29 +20,32 @@ public class Guard {
 	int breakout2;
 	int breakin2;
 	int outtime;
-	String status;//on break, on rotation, home, ect..
+	
+	String status; //on break, on rotation, home, ect..
 	
 	Position position; //which position?
 	Rotation rotation; //which rotation?
 	
-//
+
 // Initialize Guard
 //
-	public Guard (String name, int age) {
-		this.name = name;
+	public Guard (String firstName, String lastName, int age) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.age = age;
 	}
 	
 	
-//
 // Time in
-//
+// military time?
+// or have separate parameters for hr and min
+// then use hr+min/100 to form a decimal value
+// ex. hr 2 min 50 -> 2+50/100 = 2.50
 	public void setInTime (int time) {
 		intime = time;
 	}
 	
 	
-//
 // Time out
 //
 	public void setOutTime (int time) {
@@ -39,47 +53,52 @@ public class Guard {
 	}	
 	
 	
-//
 // First break
 //
-	public void setbreakin1 (int time) {
+	public void setBreakIn1 (int time) {
 		breakin1 = time;
 	}
 	
-	public int getbreakin1 () {
-		return breakin1;
-	}
-	
-	public void setbreakout1 (int time) {
+	public void setBreakOut1 (int time) {
 		breakout1 = time;
 	}
 	
-	public int getbreakout1 () {
-		return breakout1;
-	}
 	
-	
-//
 // Second break
 //
-	public void setbreakin2 (int time) {
+	public void setBreakIn2 (int time) {
 		breakin1 = time;
 	}
 	
-	public void setbreakout2 (int time) {
+	public void setBreakOut2 (int time) {
 		breakout1 = time;
 	}
 	
 	
-//
 // Status
 //
-	public void setStatus (String stat) {
-		status = stat;
+	public String setStatus (int statusNumber) {
+		status = "error";
+		
+		if(statusNumber == 1){ 			// on break status number = 1
+			status = "on break";
+			return status;
+		} else if(statusNumber == 2){		// rotation status number = 2
+			status = "on rotation" + rotation.name;
+			return status;
+		} else if (statusNumber == 3){		// home status number = 3
+			status = "home";
+			return status;
+		} else if (statusNumber == 4){		// placeholder
+			status = "etc.";
+			return status;
+		}
+		else {
+		return status;	// returns error
+		}
 	}
 	
 	
-//
 // Position
 //
 	public void setPosition (Position pos) {

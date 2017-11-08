@@ -1,15 +1,19 @@
-package gui;
+	package gui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
-
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
+
+
 public class AMS extends JFrame implements ActionListener {	
+	
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy | h:mm:ss a");
 
 	// Please keep these organized
 	
@@ -52,20 +56,24 @@ public class AMS extends JFrame implements ActionListener {
 		JFrame f = new JFrame("Aquatics Lifeguard Management System");
 		f.setLayout(new BorderLayout());
 		
+		// Get screen resolution
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		int x = ((int) tk.getScreenSize().getWidth());
 		int y = ((int) tk.getScreenSize().getHeight());
 		f.setSize(x, y);
 		
+		// Panel for time/date
 		timePanel = new JPanel();
-		f.add(timePanel, BorderLayout.SOUTH);
+		f.add(timePanel, BorderLayout.NORTH);
 		
-		time = new JLabel();
-		time.setText(currentTime());
+		// Update time and date
+		time = new JLabel();			
 		timePanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		timePanel.add(time, FlowLayout.LEFT);
+		currentTime();
+		new Timer(100, this).start();
 		
-		
+		// Tab interface
 		JTabbedPane t = new JTabbedPane();
 		
 		// Rotations Tab
@@ -147,7 +155,7 @@ public class AMS extends JFrame implements ActionListener {
 			notifications.add(notificationLabel, BorderLayout.NORTH);
 			
 			
-		// Add tabs to frame
+		// Add tabbed interface and notification panel to f
 		f.add(t);
 		f.add(notifications, BorderLayout.EAST);
 		
@@ -161,16 +169,12 @@ public class AMS extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		currentTime();
 	}
 	
-	
-	// Not working yet, I want to implement an updating real-time clock.
-	public String currentTime() {
-		Date d = new Date();
-		return d.toString();
+	// Updates JLabel time
+	public void currentTime() {
+		time.setText(dateFormat.format(Calendar.getInstance().getTime()));
 	}
-	
 }
 
