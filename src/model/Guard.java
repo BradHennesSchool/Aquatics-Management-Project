@@ -20,6 +20,7 @@ public class Guard {
 	int breakout2;
 	int breakin2;
 	int outtime;
+	int uniqueID;
 	
 	String status; //on break, on rotation, home, ect..
 	
@@ -29,10 +30,11 @@ public class Guard {
 
 // Initialize Guard
 //
-	public Guard (String firstName, String lastName, int age) {
+	public Guard (String firstName, String lastName, int age, int uniqueID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
+		this.uniqueID = uniqueID;
 	}
 	
 	
@@ -79,8 +81,10 @@ public class Guard {
 //
 	public String setStatus (int statusNumber) {
 		status = "error";
-		
-		if(statusNumber == 1){ 			// on break status number = 1
+		if(statusNumber == 0) {
+			status = "ready";          //guard ready for action
+			return status;
+		}else if(statusNumber == 1){ 			// on break status number = 1
 			status = "on break";
 			return status;
 		} else if(statusNumber == 2){		// rotation status number = 2

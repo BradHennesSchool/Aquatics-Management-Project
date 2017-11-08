@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -52,6 +53,8 @@ public class AMS extends JFrame implements ActionListener {
 	}
 	
 	public AMS() {
+		
+		
 		
 		JFrame f = new JFrame("Aquatics Lifeguard Management System");
 		f.setLayout(new BorderLayout());
