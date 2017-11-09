@@ -27,8 +27,8 @@ public class Test {
 		
 		// set in time, first break out time, first break in time, out time, etc. 
 		quinn.setInTime(800);  // *see my comment in guard class by the setInTime method for time parameter*
-		quinn.setBreakIn1(1100);
-		quinn.setBreakOut1(1115);
+		//quinn.setBreakIn1(1100);
+		//quinn.setBreakOut1(1115);
 		quinn.setOutTime(1500);
 		
 		// get times
