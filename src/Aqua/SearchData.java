@@ -30,5 +30,4 @@ public class SearchData {
 			return false;
 		}
 	}
-	
 }
