@@ -1,6 +1,8 @@
 package Aqua;
 
+import model.*;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DatatoDB {
 	static DatatoDB instance = new DatatoDB();
@@ -24,15 +26,15 @@ public class DatatoDB {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			
 			try {			
-				dbconn = DriverManager.getConnection(dbPath,"root","1995");		//1995 is my db password
+				dbconn = DriverManager.getConnection(dbPath,"root","1111");		//1995 is my db password
 				System.out.println("gain the connection");
 				return dbconn;
 			}
 			catch (Exception s){
-				System.out.println(s.getStackTrace().toString());}
+				System.out.println("Connection issues");}
 		}
 		catch (Exception err){
-			System.out.println(err.getStackTrace().toString());
+			System.out.println("jdbc driver issues");
 		}
 		return null;
 	}
@@ -45,7 +47,7 @@ public class DatatoDB {
 			ResultSet results;
 			results=sql.executeQuery();
 			System.out.println("query="+query);
-	
+			
 			//WARNING!
 			//Need to process ResultSet before closing connection
 			dbconn.close();
@@ -57,6 +59,82 @@ public class DatatoDB {
 		}
 	}
 
+	public ArrayList<Guard> GetGuardsFromDatabase( ) 
+	{
+		try 
+		{
+			String query = "select * from algae.guard_info;";
+			
+			dbconn=instance.newConnection();			
+			sql=dbconn.prepareStatement(query);
+			ResultSet guards = sql.executeQuery();
+			System.out.println("query="+query);
+			
+			ArrayList<Guard> GuardList = new ArrayList<Guard>();
+			
+			try 
+			{
+				while(guards.next())
+				{
+					GuardList.add(new Guard(guards.getString("Fname"), guards.getString("Lname"), guards.getInt("Age"), guards.getInt("Guard_ID")));
+					System.out.println(guards.getString("Fname"));
+				}
+			} 
+			catch (SQLException e) 
+			{
+				System.out.println(e.toString());
+			}
+			
+			dbconn.close();
+			return GuardList;
+		}
+		catch (Exception err) 
+		{
+			System.out.println(err.getMessage());
+			return null;
+		}
+	}
+	
+	public ArrayList<Rotation> GetRotationsFromDatabase( ) 
+	{
+		try 
+		{
+			String query = "select * from algae.rotation;";
+			
+			dbconn=instance.newConnection();			
+			sql=dbconn.prepareStatement(query);
+			ResultSet rots = sql.executeQuery();
+			System.out.println("query="+query);
+			
+			ArrayList<Rotation> RotList = new ArrayList<Rotation>();
+			
+			try 
+			{
+				while(rots.next())
+				{
+					Position[] positions = new Position[5];
+					
+					for(int i = 0; i < 5; ++ i)
+						positions[i] = new Position(rots.getString("Position" + (i + 1)));
+					
+					RotList.add(new Rotation("Rotation " + rots.getInt("Ro_ID"), rots.getInt("AgeReq"), positions));
+				}
+			} 
+			catch (SQLException e) 
+			{
+				System.out.println(e.toString());
+			}
+			
+			dbconn.close();
+			return RotList;
+		}
+		catch (Exception err) 
+		{
+			System.out.println(err.getMessage());
+			return null;
+		}
+	}
+	
 	public boolean DBentry( String query ) {
 		try {
 			System.out.println("query="+query);

@@ -63,16 +63,27 @@ public class GuardManager {
 		return "Lifeguard could not be found";
 	}
 	
-	public Guard PushRotation(String RotationName, String fName, String lName)
+	public Guard PushRotationGetReturningGuard(String RotationName, String fName, String lName)
 	{
 		return GetRotation(RotationName).Push(GetGuard(fName, lName));
 	}	
 	
-	public String SendGuardToBreak(Guard lg)
+	public void SendGuardToBreak(Guard lg)
 	{
-		lg.setBreakIn1(Calendar.getInstance().getTime());
-		
-		return "";
+		lg.setBreakIn(Calendar.getInstance().getTime());
+		lg.setStatus(0);
+	}
+	
+	public void ConfirmGuardBackFromBreak(Guard lg)
+	{
+		lg.setBreakOut(Calendar.getInstance().getTime());
+		lg.setStatus(0);
+	}
+	
+	public void ConfirmRotationPushed(Guard lg, Rotation rot)
+	{
+		lg.setStatus(0);
+		rot.pushing = false;
 	}
 	
 }

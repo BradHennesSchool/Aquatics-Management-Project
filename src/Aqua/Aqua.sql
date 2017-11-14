@@ -18,10 +18,8 @@ create table `Rotation` (
     	`Position3` varchar (255),
     	`Position4` varchar (255),
     	`Position5` varchar (255),
-    	primary key (`Ro_ID`),
-    	constraint `fk_Age` 
-    	foreign key (`Age`) 
-    	references `Guard_info` (`Age`)
+        `Age` int,
+    	primary key (`Ro_ID`)
 );
 
 create table `ScheduleWork` (
@@ -29,10 +27,7 @@ create table `ScheduleWork` (
 	`Sch_day` varchar(10),
     	`Sch_in_time` time,
     	`Sch_out_time` time,
-    	`Sch_date` date,
-	constraint `fk_G_name` 
-    	foreign key (`G_name`) 
-    	references `Guard_info` (`Fname`)
+    	`Sch_date` date
 );
 
 create table `ActualWork` (
@@ -44,8 +39,5 @@ create table `ActualWork` (
     	`Break_in1` time,
 	`Break_out1` time,
     	`Break_in2` time,
-    	`Break_out2` time,
-	constraint `fk_G_name` 
-    	foreign key (`G_name`) 
-    	references `Guard_info` (`Fname`)    
+    	`Break_out2` time   
 );

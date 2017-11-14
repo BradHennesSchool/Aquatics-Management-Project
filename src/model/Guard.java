@@ -59,14 +59,14 @@ public class Guard {
 	
 // both breaks
 //
-	public void setBreakIn1 (Date time) {
+	public void setBreakIn (Date time) {
 		if(breakin1 != null)
 			breakin1 = time;
 		else
 			breakin2 = time;
 	}
 	
-	public void setBreakOut1 (Date time) 
+	public void setBreakOut (Date time) 
 	{
 		if(breakout1 != null)
 			breakout1 = time;

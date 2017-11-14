@@ -1,17 +1,28 @@
 package model;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.*;
+
+import Aqua.*;
+
 public class ImplementationExamples 
 {
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
-		ArrayList<Guard> GuardList = new ArrayList<Guard>();
 		
-		//foreach record in the database
-		for(int i = 0; i < 5; ++i)
-		{
-			GuardList.add(new Guard("Brad" + i, "Hennes" + i, 19, i));
-		}
+		for(int i = 0; i < 5; ++ i)
+			System.out.println("Position" + (i + 1));
 		
+		System.out.println("Does this work?!?");
+		
+		DatatoDB newdb = new DatatoDB();
+		
+		ArrayList<Guard> guards = newdb.GetGuardsFromDatabase();
+		
+		ArrayList<Rotation> rots = newdb.GetRotationsFromDatabase();
+		
+		GuardManager MainManager = new GuardManager(guards, rots);
 		
 		
 	}
