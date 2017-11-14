@@ -12,13 +12,14 @@ public class Rotation {
 	{
 		this.name = name;
 		this.ageReq = ageReq;
-		this.Positions = new Position[PositionList.length];
+		this.Positions = PositionList;
 		this.pushing = false;
 	}
 	
-	private void initGuards(Guard[] InitGuardList)
+	public void initGuards(Guard[] InitGuardList)
 	{
 		SetPositions(Positions, InitGuardList);
+		
 	}
 	
 	private void SetPositions(Position[] PositionList, Guard[] InitGuardList) 
@@ -27,6 +28,8 @@ public class Rotation {
 		{
 			Positions[i] = PositionList[i];
 			Positions[i].SetGuard(InitGuardList[i]);
+			InitGuardList[i].setPosition(Positions[i]);
+			InitGuardList[i].setStatus(2);
 		}
 	}
 	

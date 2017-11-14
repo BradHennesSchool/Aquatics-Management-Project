@@ -19,7 +19,7 @@ public class GuardManager {
 	{
 		for(Rotation r: rotationList)
 		{
-			if(r.name == RotName)
+			if(r.name.equals(RotName))
 				return r;
 		}
 		
@@ -30,11 +30,25 @@ public class GuardManager {
 	{
 		for(Guard lg: guardList)
 		{
-			if(lg.firstName == fName && lg.lastName == lName)
+			if(lg.firstName.equals(fName) && lg.lastName.equals(lName))
 				return lg;
 		}
 		
 		return null;
+	}
+	
+	public String[] GetGuardList()
+	{
+		String[] GuardList = new String[guardList.size()];
+		
+		int i = 0;
+		for(Guard lg: guardList)
+		{
+			GuardList[i] = lg.firstName + " " + lg.lastName + " Age: " +lg.age + " Status: " + lg.status;
+			++i;
+		}
+		
+		return GuardList;
 	}
 	
 	public void AddGuard(Guard GuardToAdd)
@@ -48,7 +62,7 @@ public class GuardManager {
 		{
 			if(uniqueID == lg.uniqueID)
 			{
-				if(lg.status == "ready")
+				if(lg.status.equals("ready"))
 				{
 					guardList.remove(lg);
 					return lg.firstName + " Was sent home!";
@@ -65,7 +79,11 @@ public class GuardManager {
 	
 	public Guard PushRotationGetReturningGuard(String RotationName, String fName, String lName)
 	{
-		return GetRotation(RotationName).Push(GetGuard(fName, lName));
+		if(GetGuard(fName, lName).age >= GetRotation(RotationName).ageReq &&
+				GetGuard(fName, lName).status.equals("ready"))
+			return GetRotation(RotationName).Push(GetGuard(fName, lName));
+		else
+			return null;
 	}	
 	
 	public void SendGuardToBreak(Guard lg)

@@ -118,6 +118,7 @@ public class DatatoDB {
 						positions[i] = new Position(rots.getString("Position" + (i + 1)));
 					
 					RotList.add(new Rotation("Rotation " + rots.getInt("Ro_ID"), rots.getInt("AgeReq"), positions));
+					System.out.println("Rotation " + rots.getInt("Ro_ID"));
 				}
 			} 
 			catch (SQLException e) 

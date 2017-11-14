@@ -37,6 +37,7 @@ public class Guard {
 		this.lastName = lastName;
 		this.age = age;
 		this.uniqueID = uniqueID;
+		this.status = "ready";
 	}
 	
 	
@@ -80,6 +81,7 @@ public class Guard {
 // Status
 //
 	public String setStatus (int statusNumber) {
+		
 		status = "error";
 		if(statusNumber == 0) {
 			status = "ready";          //guard ready for action
@@ -88,7 +90,7 @@ public class Guard {
 			status = "on break";
 			return status;
 		} else if(statusNumber == 2){		// rotation status number = 2
-			status = "on rotation" + rotation.name;
+			status = "in position: " + position.name;
 			return status;
 		} else if (statusNumber == 3){		// home status number = 3
 			status = "home";
