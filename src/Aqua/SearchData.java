@@ -7,7 +7,7 @@ public class SearchData {
 	public boolean getRotation( String TL_name, String Ro_Time, String P1, String P2, String P3, String P4, String P5 ) {
 		try {
 	
-			PreparedStatement pst = DatatoDB.dbconn.prepareStatement("SELECT Team_Lead, Ro_Time,Position1,Position2,Position3,Position4,Position5, FROM Algae.Rotation");
+			PreparedStatement pst = DatatoDB.dbconn.prepareStatement("SELECT * FROM Algae.Rotation");
 		       
             		ResultSet rs = pst.executeQuery();
             		
@@ -36,7 +36,7 @@ public class SearchData {
 	public boolean getWorkSch( String Fname, String Act_day, String Act_in_time, String Act_out_time, String Act_date, String Break_in1, String Break_out1, String Break_in2, String Break_out2 ) {
 		try {
 	
-			PreparedStatement pst = DatatoDB.dbconn.prepareStatement("SELECT Fname, Act_day, Act_in_time, Act_out_time, Act_date, Break_in1, Break_out1, Break_in2, Break_out2 FROM Algae.Rotation order by Act_date");
+			PreparedStatement pst = DatatoDB.dbconn.prepareStatement("SELECT * FROM Algae.ActualWork order by Act_date");
 		       
             		ResultSet rs = pst.executeQuery();
             		while(rs.next()){
