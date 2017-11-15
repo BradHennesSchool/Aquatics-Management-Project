@@ -26,7 +26,9 @@ public class GuardManager {
 		return null;
 	}
 	
-	public List<Guard> GetGuard(Boolean over18, String[] status)
+	// Is this what you want?
+	//
+	public List<Guard> getGuard2(Boolean over18, String status)
 	{
 		List<Guard> guardList= new LinkedList<Guard>();
 		
@@ -37,6 +39,17 @@ public class GuardManager {
 		}
 		
 		return guardList;
+	}
+	
+	public Guard GetGuard(String fName, String lName)
+	{
+		for(Guard lg: guardList)
+		{
+			if(lg.firstName.equals(fName) && lg.lastName.equals(lName))
+				return lg;
+		}
+		
+		return null;
 	}
 	
 	public String[] GetGuardList()

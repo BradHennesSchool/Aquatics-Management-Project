@@ -29,7 +29,7 @@ public class Rotation {
 			Positions[i] = PositionList[i];
 			Positions[i].SetGuard(InitGuardList[i]);
 			InitGuardList[i].setPosition(Positions[i]);
-			InitGuardList[i].setStatus(2);
+			InitGuardList[i].setStatus("position");
 		}
 	}
 	
