@@ -40,8 +40,7 @@ public class Test {
 		
 		
 		//set in time test
-		SimpleDateFormat sf = new SimpleDateFormat("h:mm a"); 	// formatting for the time output
-		System.out.println(sf.format(quinn.setInTime()));		// setInTime returns the current time and sets the intime variable to the current time			
+		//SimpleDateFormat sf = new SimpleDateFormat("h:mm a"); 	// formatting for the time output		
 		
 		System.out.println(quinn.setOutTime());	// formatting is coded inside the method
 	}

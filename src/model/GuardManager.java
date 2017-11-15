@@ -103,19 +103,19 @@ public class GuardManager {
 	
 	public void SendGuardToBreak(Guard lg)
 	{
-		lg.setBreakIn(Calendar.getInstance().getTime());
-		lg.setStatus(0);
+		lg.setBreakIn();
+		lg.setStatus("ready");
 	}
 	
 	public void ConfirmGuardBackFromBreak(Guard lg)
 	{
-		lg.setBreakOut(Calendar.getInstance().getTime());
-		lg.setStatus(0);
+		lg.setBreakOut();
+		lg.setStatus("ready");
 	}
 	
 	public void ConfirmRotationPushed(Guard lg, Rotation rot)
 	{
-		lg.setStatus(0);
+		lg.setStatus("ready");
 		rot.pushing = false;
 	}
 	
