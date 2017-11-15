@@ -8,17 +8,19 @@ package model;
 	// has methods for setting in and out times for 
 	//shifts and breaks, setting current status, and 
 	// also keeps track of current position and rotation
+import java.util.*;
+
 
 public class Guard {
 	String firstName;
 	String lastName;
 	
 	int age;
-	String intime;
-	int breakout1;
-	int breakin1;
-	int breakout2;
-	int breakin2;
+	int intime;
+	Date breakout1 = null;;
+	Date breakin1 = null;;
+	Date breakout2 = null;;
+	Date breakin2 = null;;
 	int outtime;
 	int uniqueID;
 	
@@ -35,6 +37,7 @@ public class Guard {
 		this.lastName = lastName;
 		this.age = age;
 		this.uniqueID = uniqueID;
+		this.status = "ready";
 	}
 	
 	
@@ -55,31 +58,30 @@ public class Guard {
 	}	
 	
 	
-// First break
+// both breaks
 //
-	public void setBreakIn1 (int time) {
-		breakin1 = time;
+	public void setBreakIn (Date time) {
+		if(breakin1 != null)
+			breakin1 = time;
+		else
+			breakin2 = time;
 	}
 	
-	public void setBreakOut1 (int time) {
-		breakout1 = time;
+	public void setBreakOut (Date time) 
+	{
+		if(breakout1 != null)
+			breakout1 = time;
+		else
+			breakout2 = time;
 	}
 	
 	
-// Second break
-//
-	public void setBreakIn2 (int time) {
-		breakin1 = time;
-	}
-	
-	public void setBreakOut2 (int time) {
-		breakout1 = time;
-	}
 	
 	
 // Status
 //
 	public String setStatus (int statusNumber) {
+		
 		status = "error";
 		if(statusNumber == 0) {
 			status = "ready";          //guard ready for action
@@ -88,7 +90,7 @@ public class Guard {
 			status = "on break";
 			return status;
 		} else if(statusNumber == 2){		// rotation status number = 2
-			status = "on rotation" + rotation.name;
+			status = "in position: " + position.name;
 			return status;
 		} else if (statusNumber == 3){		// home status number = 3
 			status = "home";
