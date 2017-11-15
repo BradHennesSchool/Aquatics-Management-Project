@@ -26,15 +26,17 @@ public class GuardManager {
 		return null;
 	}
 	
-	public Guard GetGuard(String fName, String lName)
+	public List<Guard> GetGuard(Boolean over18, String[] status)
 	{
+		List<Guard> guardList= new LinkedList<Guard>();
+		
 		for(Guard lg: guardList)
 		{
-			if(lg.firstName.equals(fName) && lg.lastName.equals(lName))
-				return lg;
+			if(Arrays.asList(status).contains(lg.status) && over18)
+				guardList.add(lg);
 		}
 		
-		return null;
+		return guardList;
 	}
 	
 	public String[] GetGuardList()
