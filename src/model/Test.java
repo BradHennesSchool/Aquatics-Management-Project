@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Time;
 import java.util.*;
 
 public class Test {
@@ -43,7 +44,6 @@ public class Test {
 		// *do we need both?*
 		winona.SetGuard(quinn);
 		quinn.setPosition(winona);
-		
 		
 		
 	}

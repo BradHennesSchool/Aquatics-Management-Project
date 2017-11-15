@@ -14,7 +14,7 @@ public class Guard {
 	String lastName;
 	
 	int age;
-	int intime;
+	String intime;
 	int breakout1;
 	int breakin1;
 	int breakout2;
@@ -43,8 +43,8 @@ public class Guard {
 // or have separate parameters for hr and min
 // then use hr+min/100 to form a decimal value
 // ex. hr 2 min 50 -> 2+50/100 = 2.50
-	public void setInTime (int time) {
-		intime = time;
+	public void setInTime (int hr, int min) {
+		intime = Integer.toString(hr) + ":" + Integer.toString(min);
 	}
 	
 	
@@ -108,7 +108,5 @@ public class Guard {
 	public void setPosition (Position pos) {
 		position = pos;
 	}
-	
-	
 	
 }
