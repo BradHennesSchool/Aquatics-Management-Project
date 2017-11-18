@@ -1,12 +1,14 @@
 package model;
 
-	// Main Author: Quinn O'Connor
+	import java.text.SimpleDateFormat;
+
+// Main Author: Quinn O'Connor
 
 	// Description:
 	// Object for life guards
 	// initialized with first name, last name and age
 	// has methods for setting in and out times for 
-	//shifts and breaks, setting current status, and 
+	// shifts and breaks, setting current status, and 
 	// also keeps track of current position and rotation
 import java.util.*;
 
@@ -16,12 +18,12 @@ public class Guard {
 	String lastName;
 	
 	int age;
-	int intime;
-	Date breakout1 = null;;
-	Date breakin1 = null;;
-	Date breakout2 = null;;
-	Date breakin2 = null;;
-	int outtime;
+	Date intime = null;
+	Date breakout1 = null;
+	Date breakin1 = null;
+	Date breakout2 = null;
+	Date breakin2 = null;
+	Date outtime = null;
 	int uniqueID;
 	
 	String status; //on break, on rotation, home, ect..
@@ -29,6 +31,7 @@ public class Guard {
 	Position position; //which position?
 	Rotation rotation; //which rotation?
 	
+	SimpleDateFormat sf = new SimpleDateFormat("h:mm a"); //formatting for time
 
 // Initialize Guard
 //
@@ -42,60 +45,94 @@ public class Guard {
 	
 	
 // Time in
-// military time?
-// or have separate parameters for hr and min
-// then use hr+min/100 to form a decimal value
-// ex. hr 2 min 50 -> 2+50/100 = 2.50
-	public void setInTime (int time) {
-		intime = time;
+//
+	public String setInTime () {
+		intime = new Date();
+		return sf.format(intime);
+	}
+	
+	public String getInTime () 
+	{
+		return sf.format(intime);
 	}
 	
 	
 // Time out
 //
-	public void setOutTime (int time) {
-		outtime = time;
+	public String setOutTime () {
+		outtime = new Date();
+		return sf.format(outtime);
 	}	
+	
+	public String getOutTime () 
+	{
+		return sf.format(outtime);
+	}
 	
 	
 // both breaks
 //
-	public void setBreakIn (Date time) {
-		if(breakin1 != null)
-			breakin1 = time;
-		else
-			breakin2 = time;
+	public String setBreakIn () {
+		if(breakin1 != null) {
+			breakin1 = new Date();
+			return sf.format(breakin1);
+		}
+		else {
+			breakin2 = new Date();
+			return sf.format(breakin2);
+		}
 	}
 	
-	public void setBreakOut (Date time) 
+	public String setBreakOut () 
 	{
-		if(breakout1 != null)
-			breakout1 = time;
-		else
-			breakout2 = time;
+		if(breakout1 != null) {
+			breakout1 = new Date();
+			return sf.format(breakout1);
+		}
+		else {
+			breakout2 = new Date();
+			return sf.format(breakout2);
+		}
 	}
 	
+	public String getBreakIn1 ()
+	{
+		return sf.format(breakin1);
+	}
 	
+	public String getBreakIn2 ()
+	{
+		return sf.format(breakin2);
+	}
 	
+	public String getBreakOut1 ()
+	{
+		return sf.format(breakout1);
+	}
+	
+	public String getBreakOut2 ()
+	{
+		return sf.format(breakout2);
+	}
 	
 // Status
 //
-	public String setStatus (int statusNumber) {
+	public String setStatus (String status) {
 		
 		status = "error";
-		if(statusNumber == 0) {
+		if(status == "ready") {
 			status = "ready";          //guard ready for action
 			return status;
-		}else if(statusNumber == 1){ 			// on break status number = 1
+		}else if(status == "break"){ 			// on break status number = 1
 			status = "on break";
 			return status;
-		} else if(statusNumber == 2){		// rotation status number = 2
+		} else if(status == "position"){		// rotation status number = 2
 			status = "in position: " + position.name;
 			return status;
-		} else if (statusNumber == 3){		// home status number = 3
+		} else if (status == "home"){		// home status number = 3
 			status = "home";
 			return status;
-		} else if (statusNumber == 4){		// placeholder
+		} else if (status == "etc"){		// placeholder
 			status = "etc.";
 			return status;
 		}
@@ -110,7 +147,5 @@ public class Guard {
 	public void setPosition (Position pos) {
 		position = pos;
 	}
-	
-	
 	
 }

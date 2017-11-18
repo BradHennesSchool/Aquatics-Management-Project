@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Test {
@@ -11,8 +12,8 @@ public class Test {
 		List<Guard> guardList= new LinkedList<Guard>();
 		
 		// set status button
-		quinn.setStatus(1);	//1 = on break
-		brad.setStatus(3);	//3 = home
+		quinn.setStatus("ready");	//1 = on break
+		brad.setStatus("home");	//3 = home
 		System.out.println(quinn.firstName + " " + quinn.lastName.charAt(0) + ". status: " + quinn.status);
 		System.out.println(brad.firstName + " " + brad.lastName.charAt(0) + ". status: " + brad.status);
 		
@@ -25,12 +26,6 @@ public class Test {
 		guardList.add(quinn);	//add new employee to the guardList 
 		guardList.add(brad);
 		
-		// set in time, first break out time, first break in time, out time, etc. 
-		quinn.setInTime(800);  // *see my comment in guard class by the setInTime method for time parameter*
-		//quinn.setBreakIn1(1100);
-		//quinn.setBreakOut1(1115);
-		quinn.setOutTime(1500);
-		
 		// get times
 		System.out.println(quinn.firstName + "'s in time: " + quinn.intime);
 		System.out.println(quinn.firstName + "'s break in time: " + quinn.breakin1);
@@ -40,11 +35,13 @@ public class Test {
 		Position winona = new Position("Winona");
 		
 		// set guard to a position and set position to guard
-		// *do we need both?*
 		winona.SetGuard(quinn);
 		quinn.setPosition(winona);
 		
 		
+		//set in time test
+		//SimpleDateFormat sf = new SimpleDateFormat("h:mm a"); 	// formatting for the time output		
 		
+		System.out.println(quinn.setOutTime());	// formatting is coded inside the method
 	}
 }

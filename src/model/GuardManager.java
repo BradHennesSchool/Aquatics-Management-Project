@@ -26,6 +26,22 @@ public class GuardManager {
 		return null;
 	}
 	
+	// Is this what you want?
+	//yes
+	//
+	public List<Guard> getGuard2(Boolean over18, String[] status)
+	{
+		List<Guard> guardList= new LinkedList<Guard>();
+		
+		for(Guard lg: guardList)
+		{
+			if(Arrays.asList(status).contains(lg.status) && over18)
+				guardList.add(lg);
+		}
+		
+		return guardList;
+	}
+	
 	public Guard GetGuard(String fName, String lName)
 	{
 		for(Guard lg: guardList)
@@ -88,20 +104,20 @@ public class GuardManager {
 	
 	public void SendGuardToBreak(Guard lg)
 	{
-		lg.setBreakIn(Calendar.getInstance().getTime());
-		lg.setStatus(0);
+		lg.setBreakIn();
+		lg.setStatus("ready");
 	}
 	
 	public void ConfirmGuardBackFromBreak(Guard lg)
 	{
-		lg.setBreakOut(Calendar.getInstance().getTime());
-		lg.setStatus(0);
+		lg.setBreakOut();
+		lg.setStatus("ready");
 	}
 	
 	public void ConfirmRotationPushed(Guard lg, Rotation rot)
 	{
-		lg.setStatus(0);
-		rot.pushing = false;		
+		lg.setStatus("ready");
+		rot.pushing = false;
 	}
 	
 }

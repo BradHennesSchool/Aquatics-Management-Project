@@ -164,11 +164,24 @@ public class DatatoDB {
 		}
 	}
 	
-	public boolean enterRotation( String TL_name, String G_name, String Rot_Time, String Position1, String Position2, String Position3, String Position4, String Position5, String Age ) {
+	public boolean enterRotation( String Position1, String Position2, String Position3, String Position4, String Position5, String AgeReq ) {
 		try {
 	
-			instance.DBentry("INSERT INTO Algae.Rotation ( `Team_Lead`, `Ro_Time`, `Position1`, `Position2`, `Position3`, `Position4`, `Position5`, `age`) " +
-								"VALUES ('"+TL_name+"','"+Rot_Time+"', '"+Position1+"', '"+Position2+"', '"+Position3+"','"+Position4+"', '"+Position5+"', '"+Age+"');");	
+			instance.DBentry("INSERT INTO Algae.Rotation ( `Position1`, `Position2`, `Position3`, `Position4`, `Position5`, `AgeReq`) " +
+								"VALUES ('"+Position1+"', '"+Position2+"', '"+Position3+"','"+Position4+"', '"+Position5+"', '"+AgeReq+"');");	
+			return true;
+		}
+		catch ( Exception err ) {
+			err.getStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean enterRotationHis( String TL_name, String G_name, String Rot_Time, String Position1, String Position2, String Position3, String Position4, String Position5, String AgeReq ) {
+		try {
+	
+			instance.DBentry("INSERT INTO Algae.Rotation_His ( `Team_Lead`, `Ro_Time`, `Position1`, `Position2`, `Position3`, `Position4`, `Position5`, `AgeReq`) " +
+								"VALUES ('"+TL_name+"','"+Rot_Time+"', '"+Position1+"', '"+Position2+"', '"+Position3+"','"+Position4+"', '"+Position5+"', '"+AgeReq+"');");	
 			return true;
 		}
 		catch ( Exception err ) {
