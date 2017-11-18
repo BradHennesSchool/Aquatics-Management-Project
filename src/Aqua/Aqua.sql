@@ -11,14 +11,12 @@ create table `Guard_Info` (
 
 create table `Rotation` (
 	`Ro_ID` int auto_increment,
-	`Team_Lead` varchar (40),
-    	`Ro_Time` time,
     	`Position1` varchar (255),
     	`Position2` varchar (255),
     	`Position3` varchar (255),
     	`Position4` varchar (255),
     	`Position5` varchar (255),
-        `Age` int,
+        `AgeReq` int,
     	primary key (`Ro_ID`)
 );
 

@@ -10,7 +10,6 @@ public class ImplementationExamples
 {
 	public static void main(String[] args)
 	{
-		
 		for(int i = 0; i < 5; ++ i)
 			System.out.println("Position" + (i + 1));
 		
@@ -34,7 +33,7 @@ public class ImplementationExamples
 		initGuardList[1] = MainManager.GetGuard("Jon", "Doe");
 		initGuardList[2] = MainManager.GetGuard("Jean", "Leow");
 		initGuardList[3] = MainManager.GetGuard("Kevin", "Eanes");
-		initGuardList[4] = MainManager.GetGuard("Hannah", "Lebakken");
+		initGuardList[4] = MainManager.GetGuard("Hannah", "Lebakken"); 
 		
 		//Create the initial placement for rotation one
 		MainManager.GetRotation("Rotation 1").initGuards(initGuardList);
@@ -64,5 +63,6 @@ public class ImplementationExamples
 		else
 			System.out.println(ReturningGuard.firstName + " Is comming back from rotation 1");
 		System.out.println();
+		
 	}
 }

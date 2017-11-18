@@ -101,7 +101,7 @@ public class GuardManager {
 	public void ConfirmRotationPushed(Guard lg, Rotation rot)
 	{
 		lg.setStatus(0);
-		rot.pushing = false;
+		rot.pushing = false;		
 	}
 	
 }
