@@ -29,17 +29,17 @@ public class GuardManager {
 	// Is this what you want?
 	//yes
 	//
-	public List<Guard> getGuard2(Boolean over18, String[] status)
+	public ArrayList<String> getGuard2(Boolean over18, String[] status)
 	{
-		List<Guard> guardList= new LinkedList<Guard>();
+		ArrayList<String> ret= new ArrayList<String>();
 		
 		for(Guard lg: guardList)
 		{
-			if(Arrays.asList(status).contains(lg.status) && over18)
-				guardList.add(lg);
+			if(Arrays.asList(status).contains(lg.status) && (lg.age >= 18 || !over18))
+				ret.add(lg.firstName + " " + lg.lastName);
 		}
 		
-		return guardList;
+		return ret;
 	}
 	
 	public Guard GetGuard(String fName, String lName)

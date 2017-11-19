@@ -64,5 +64,15 @@ public class ImplementationExamples
 			System.out.println(ReturningGuard.firstName + " Is comming back from rotation 1");
 		System.out.println();
 		
+		
+		
+		for(String st: MainManager.getGuard2(false, new String[] {"ready"}))
+		{
+			System.out.println(st);
+		}
+		
+		
+		
+		
 	}
 }
