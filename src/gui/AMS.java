@@ -212,6 +212,15 @@ public class AMS extends JFrame implements ActionListener {
 		home = new JButton();
 		home.setText("Home");
 		daily.add(home);
+		
+		//Table   
+		String column[]={"Name","Sch In","Sch Out", "Act In", "To Break", "From Break", "To Break", "From Break", "Act Out"};
+		String data[][]={{"Jean","8.00","4.00","","","","","",""}, 
+						{"Brad","9.00","5.00","","","","","",""}, 
+                			{"Hannah","8.00","5.00","","","","","",""}};
+		JTable table = new JTable (data,column);    
+		table.setBounds(30,40,200,300); 
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
 		// Breaks Tab
 		breaks = new JPanel();
