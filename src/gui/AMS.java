@@ -233,8 +233,8 @@ public class AMS extends JFrame implements ActionListener {
 		breaks.add(ctrl, BorderLayout.NORTH);
 		breaks.add(sched, BorderLayout.SOUTH);
 
-		String[] guards = { "Brad", "Hannah", "Jean", "Kevin", "Quinn" };
-		sendwho = new JComboBox(guards);
+		//String[] guards = { "Brad", "Hannah", "Jean", "Kevin", "Quinn" };
+		sendwho = new JComboBox(updateBreaksdd());
 		sendwho.setPreferredSize(new Dimension(140, 22));
 		ctrl.add(sendwho);
 
@@ -275,9 +275,17 @@ public class AMS extends JFrame implements ActionListener {
 		time.setText(dateFormat.format(Calendar.getInstance().getTime()));
 	}
 	
-	public void updateBreaksdd()
+	public String[] updateBreaksdd()
 	{
 		ArrayList<String> Guards = MainManager.getGuard2(false, new String[]{"ready"});
-		sendwho = new JComboBox(Guards.toArray());
+		String[] GuardArray = new String[Guards.size()];
+		int i = 0;
+		for(String s: Guards)
+		{
+			GuardArray[i] = s;
+			++i;
+		}
+		
+		return GuardArray;
 	}
 }
