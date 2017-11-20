@@ -15,6 +15,22 @@ import Aqua.*;
 
 public class AMS extends JFrame implements ActionListener {
 
+	
+	public static void main(String[] args) 
+	{
+		ArrayList<Rotation> Rotations = new ArrayList<Rotation>();
+		ArrayList<Guard> Guards = new ArrayList<Guard>();
+		Position[] Pos = new Position[1];
+		
+		Pos[0] = new Position("Pos name");
+		
+		Rotations.add(new Rotation("Name", 18, Pos));
+		
+		GuardManager MainManager = new GuardManager(Guards, Rotations);
+		
+		AMS ui = new AMS(MainManager);
+	}
+	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy | h:mm:ss a");
 
 	// Component Arrays
