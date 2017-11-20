@@ -53,18 +53,17 @@ public class Program {
 		MainManager.GetRotation("Rotation 3").initGuards(initGuardList);
 		
 		Guard[] initGuardList4 = new Guard[5];
-		initGuardList[0] = MainManager.GetGuard("Jane", "Doe");
-		initGuardList[1] = MainManager.GetGuard("Jon", "Doe");
-		initGuardList[2] = MainManager.GetGuard("Jean", "Leow");
-		initGuardList[3] = MainManager.GetGuard("Kevin", "Eanes");
-		initGuardList[4] = MainManager.GetGuard("Hannah", "Lebakken"); 
+		initGuardList[0] = MainManager.GetGuard("Brad", "Hennes");
+		initGuardList[1] = MainManager.GetGuard("Brad2", "Hennes2");
+		initGuardList[2] = MainManager.GetGuard("Quinn", "OConnor");
+		initGuardList[3] = MainManager.GetGuard("Quinn2", "OConnor2");
+		initGuardList[4] = MainManager.GetGuard("Quinn3", "OConnor3"); 
 		
 		//Create the initial placement for rotation one
 		MainManager.GetRotation("Rotation 4").initGuards(initGuardList);
 		
 		
-		
-		
+		//UI.updateRotations(MainManager.getRotations);
 		
 	}
 

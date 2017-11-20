@@ -1,12 +1,14 @@
 package model;
 
-public class Rotation {
+import java.util.*;
 
+public class Rotation 
+{
 	String name;
 	int ageReq;
 	boolean pushing;
 	Guard ReturningGuard;
-	
+	Date LastPush;
 	Position[] Positions;
 	
 	public Rotation(String name, int ageReq, Position[] PositionList)
@@ -20,7 +22,6 @@ public class Rotation {
 	public void initGuards(Guard[] InitGuardList)
 	{
 		SetPositions(Positions, InitGuardList);
-		
 	}
 	
 	private void SetPositions(Position[] PositionList, Guard[] InitGuardList) 
@@ -34,7 +35,7 @@ public class Rotation {
 		}
 	}
 	
-	public Position[] Positions() 
+	public Position[] Positions()
 	{
 		return Positions;
 	}
@@ -53,9 +54,14 @@ public class Rotation {
 		newGuard.setPosition(Positions[0]);
 		
 		pushing = true;
-		
+		LastPush = new Date();
 		ReturningGuard = retGuard;
 		
 		return retGuard;
+	}
+	
+	public Date GetLastPush()
+	{
+		return LastPush;
 	}
 }

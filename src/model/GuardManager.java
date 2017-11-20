@@ -26,9 +26,11 @@ public class GuardManager {
 		return null;
 	}
 	
-	// Is this what you want?
-	//yes
-	//
+	public ArrayList<Rotation> GetAllRotations()
+	{
+		return rotationList;
+	}
+	
 	public ArrayList<String> getGuard2(Boolean over18, String[] status)
 	{
 		ArrayList<String> ret= new ArrayList<String>();
@@ -120,4 +122,20 @@ public class GuardManager {
 		rot.pushing = false;
 	}
 	
+	public ArrayList<String> GetNotifications()
+	{
+		ArrayList<String> ret = new ArrayList<String>();
+		
+		for(Rotation r: rotationList)
+		{
+			long diffMinutes = (r.GetLastPush().getTime() - new Date().getTime()) / (60 * 1000) % 60;
+			
+			if(diffMinutes > 45)
+			{
+				ret.add("Please push " + r.name);
+			}
+		}
+		
+		return ret;
+	}	
 }
