@@ -38,7 +38,6 @@ public class ImplementationExamples
 		//Create the initial placement for rotation one
 		MainManager.GetRotation("Rotation 1").initGuards(initGuardList);
 		
-		
 		System.out.println();
 		//Show that the guards above are in position
 		for(String line: MainManager.GetGuardList())
@@ -63,7 +62,6 @@ public class ImplementationExamples
 		else
 			System.out.println(ReturningGuard.firstName + " Is comming back from rotation 1");
 		System.out.println();
-		
 		
 		for(String st: MainManager.getGuard2(false, new String[] {"ready"}))
 		{

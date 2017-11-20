@@ -266,7 +266,7 @@ public class AMS extends JFrame implements ActionListener {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		currentTime();

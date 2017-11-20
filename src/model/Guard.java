@@ -140,8 +140,6 @@ public class Guard {
 		return status;	// returns error
 		}
 	}
-	
-	
 // Position
 //
 	public void setPosition (Position pos) {
