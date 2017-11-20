@@ -8,7 +8,6 @@ import model.*;
 
 public class Program 
 {
-
 	public static void main(String[] args) 
 	{
 		DatatoDB newdb = new DatatoDB();
@@ -22,7 +21,7 @@ public class Program
 		//create the guard manager
 		GuardManager MainManager = new GuardManager(guards, rots);
 		
-		AMS UI = new AMS();
+		AMS UI = new AMS(MainManager);
 		
 		Guard[] initGuardList = new Guard[5];
 		initGuardList[0] = MainManager.GetGuard("Jane", "Doe");
@@ -65,8 +64,5 @@ public class Program
 		MainManager.GetRotation("Rotation 4").initGuards(initGuardList);		
 		
 		//UI.updateRotations(MainManager.getRotations);	
-		
-		
-		
 	}
 }
