@@ -52,3 +52,13 @@ create table `ActualWork` (
     	`Break_in2` time,
     	`Break_out2` time   
 );
+
+insert into `ScheduleWork` values 
+	('Jane', 'Monday', '8:0:0', '16:0:0'),
+    	('Hannah', 'Monday', '9:0:0', '17:0:0'),
+	('Kevin', 'Monday', '10:0:0', '18:0:0'),
+	('Jean', 'Monday', '8:0:0', '16:0:0'),
+	('John', 'Monday', '10:0:0', '18:0:0')
+;
+
+select * from `ScheduleWork`;
