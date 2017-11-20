@@ -21,6 +21,51 @@ public class Program {
 		GuardManager MainManager = new GuardManager(guards, rots);
 		
 		AMS UI = new AMS();
+		
+		Guard[] initGuardList = new Guard[5];
+		initGuardList[0] = MainManager.GetGuard("Jane", "Doe");
+		initGuardList[1] = MainManager.GetGuard("Jon", "Doe");
+		initGuardList[2] = MainManager.GetGuard("Jean", "Leow");
+		initGuardList[3] = MainManager.GetGuard("Kevin", "Eanes");
+		initGuardList[4] = MainManager.GetGuard("Hannah", "Lebakken"); 
+		
+		//Create the initial placement for rotation one
+		MainManager.GetRotation("Rotation 1").initGuards(initGuardList);
+		
+		Guard[] initGuardList2 = new Guard[5];
+		initGuardList[0] = MainManager.GetGuard("Jane2", "Doe2");
+		initGuardList[1] = MainManager.GetGuard("Jon", "Doe2");
+		initGuardList[2] = MainManager.GetGuard("Jean2", "Leow2");
+		initGuardList[3] = MainManager.GetGuard("Kevin2", "Eanes2");
+		initGuardList[4] = MainManager.GetGuard("Hannah2", "Lebakken2"); 
+		
+		//Create the initial placement for rotation one
+		MainManager.GetRotation("Rotation 2").initGuards(initGuardList);
+		
+		Guard[] initGuardList3 = new Guard[5];
+		initGuardList[0] = MainManager.GetGuard("Jane3", "Doe3");
+		initGuardList[1] = MainManager.GetGuard("Jon3", "Doe3");
+		initGuardList[2] = MainManager.GetGuard("Jean3", "Leow3");
+		initGuardList[3] = MainManager.GetGuard("Kevin3", "Eanes3");
+		initGuardList[4] = MainManager.GetGuard("Hannah3", "Lebakken3"); 
+		
+		//Create the initial placement for rotation one
+		MainManager.GetRotation("Rotation 3").initGuards(initGuardList);
+		
+		Guard[] initGuardList4 = new Guard[5];
+		initGuardList[0] = MainManager.GetGuard("Jane", "Doe");
+		initGuardList[1] = MainManager.GetGuard("Jon", "Doe");
+		initGuardList[2] = MainManager.GetGuard("Jean", "Leow");
+		initGuardList[3] = MainManager.GetGuard("Kevin", "Eanes");
+		initGuardList[4] = MainManager.GetGuard("Hannah", "Lebakken"); 
+		
+		//Create the initial placement for rotation one
+		MainManager.GetRotation("Rotation 4").initGuards(initGuardList);
+		
+		
+		
+		
+		
 	}
 
 }

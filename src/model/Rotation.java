@@ -5,6 +5,7 @@ public class Rotation {
 	String name;
 	int ageReq;
 	boolean pushing;
+	Guard ReturningGuard;
 	
 	Position[] Positions;
 	
@@ -52,6 +53,8 @@ public class Rotation {
 		newGuard.setPosition(Positions[0]);
 		
 		pushing = true;
+		
+		ReturningGuard = retGuard;
 		
 		return retGuard;
 	}
