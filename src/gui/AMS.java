@@ -27,7 +27,6 @@ public class AMS extends JFrame implements ActionListener {
 	JTextArea[] textBox = new JTextArea[4];
 
 	// Components: Please keep these organized
-
 	JFrame f;
 	JTabbedPane t;
 

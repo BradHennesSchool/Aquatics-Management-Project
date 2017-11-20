@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import Aqua.*;
 import model.*;
 
-public class Program {
+public class Program 
+{
 
 	public static void main(String[] args) 
 	{
@@ -14,6 +15,7 @@ public class Program {
 		
 		//get guards from database
 		ArrayList<Guard> guards = newdb.GetGuardsFromDatabase();
+		
 		//get rotations from database
 		ArrayList<Rotation> rots = newdb.GetRotationsFromDatabase();
 		
@@ -60,11 +62,11 @@ public class Program {
 		initGuardList[4] = MainManager.GetGuard("Quinn3", "OConnor3"); 
 		
 		//Create the initial placement for rotation one
-		MainManager.GetRotation("Rotation 4").initGuards(initGuardList);
+		MainManager.GetRotation("Rotation 4").initGuards(initGuardList);		
+		
+		//UI.updateRotations(MainManager.getRotations);	
 		
 		
-		//UI.updateRotations(MainManager.getRotations);
 		
 	}
-
 }

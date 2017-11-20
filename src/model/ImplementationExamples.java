@@ -1,7 +1,4 @@
 package model;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.util.*;
 
 import Aqua.*;
@@ -67,6 +64,5 @@ public class ImplementationExamples
 		{
 			System.out.println(st);//my changes
 		}
-		
 	}
 }

@@ -117,13 +117,14 @@ public class Guard {
 	
 // Status
 //
-	public String setStatus (String status) {
+	public String setStatus (String st) {
 		
-		status = "error";
-		if(status == "ready") {
+		if(status == "ready") 
+		{
 			status = "ready";          //guard ready for action
 			return status;
-		}else if(status == "break"){ 			// on break status number = 1
+		}else if(status == "break")
+		{ 			// on break status number = 1
 			status = "on break";
 			return status;
 		} else if(status == "position"){		// rotation status number = 2
