@@ -7,7 +7,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableModel;
+import java.util.*;
+
+import model.*;
+import Aqua.*;
+
 
 public class AMS extends JFrame implements ActionListener {
 
@@ -58,14 +62,12 @@ public class AMS extends JFrame implements ActionListener {
 
 	JPanel notifications;
 	JLabel notificationLabel;
+	GuardManager MainManager;
 
-	public static void main(String[] args) {
 
-		AMS AMS = new AMS();
-
-	}
-
-	public AMS() {
+	public AMS(GuardManager main) {
+		
+		MainManager = main;
 
 		// Create elements in component arrays
 		for (int i = 0; i < panels.length; i++) {
@@ -230,8 +232,8 @@ public class AMS extends JFrame implements ActionListener {
 		breaks.add(ctrl, BorderLayout.NORTH);
 		breaks.add(sched, BorderLayout.SOUTH);
 
-		String[] guards = { "Brad", "Hannah", "Jean", "Kevin", "Quinn" };
-		sendwho = new JComboBox(guards);
+		//String[] guards = { "Brad", "Hannah", "Jean", "Kevin", "Quinn" };
+		sendwho = new JComboBox(updateBreaksdd());
 		sendwho.setPreferredSize(new Dimension(140, 22));
 		ctrl.add(sendwho);
 
@@ -239,10 +241,6 @@ public class AMS extends JFrame implements ActionListener {
 		send.setText("Send");
 		ctrl.add(send);
 
-		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] { { null, null }, { null, null }, { null, null }, },
-				new String[] { "...", "Break" }));
-		sched.add(table);
 
 		// Notification Panel
 		notifications = new JPanel();
@@ -274,5 +272,19 @@ public class AMS extends JFrame implements ActionListener {
 	// Updates JLabel time
 	public void currentTime() {
 		time.setText(dateFormat.format(Calendar.getInstance().getTime()));
+	}
+	
+	public String[] updateBreaksdd()
+	{
+		ArrayList<String> Guards = MainManager.getGuard2(false, new String[]{"ready"});
+		String[] GuardArray = new String[Guards.size()];
+		int i = 0;
+		for(String s: Guards)
+		{
+			GuardArray[i] = s;
+			++i;
+		}
+		
+		return GuardArray;
 	}
 }
