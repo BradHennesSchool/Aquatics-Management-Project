@@ -67,7 +67,7 @@ public class ImplementationExamples
 		
 		for(String st: MainManager.getGuard2(false, new String[] {"ready"}))
 		{
-			System.out.println(st);
+			System.out.println(st);//my changes
 		}
 		
 	}
