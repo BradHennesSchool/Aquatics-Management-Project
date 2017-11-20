@@ -37,8 +37,7 @@ create table `ScheduleWork` (
 	`G_name` varchar(255),
 	`Sch_day` varchar(10),
     	`Sch_in_time` time,
-    	`Sch_out_time` time,
-    	`Sch_date` date
+    	`Sch_out_time` time
 );
 
 create table `ActualWork` (
