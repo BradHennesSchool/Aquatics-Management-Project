@@ -22,6 +22,12 @@ public class Rotation
 	public void initGuards(Guard[] InitGuardList)
 	{
 		SetPositions(Positions, InitGuardList);
+		for(Guard lg: InitGuardList)
+		{
+			lg.setStatus("on rotation");
+		}
+		
+		
 	}
 	
 	private void SetPositions(Position[] PositionList, Guard[] InitGuardList) 
@@ -31,7 +37,7 @@ public class Rotation
 			Positions[i] = PositionList[i];
 			Positions[i].SetGuard(InitGuardList[i]);
 			InitGuardList[i].setPosition(Positions[i]);
-			InitGuardList[i].setStatus("position");
+			InitGuardList[i].setStatus("on rotation");
 		}
 	}
 	

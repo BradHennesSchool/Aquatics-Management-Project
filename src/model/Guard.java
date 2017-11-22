@@ -117,29 +117,9 @@ public class Guard {
 	
 // Status
 //
-	public String setStatus (String st) {
+	public void setStatus (String st) {
 		
-		if(status == "ready") 
-		{
-			status = "ready";          //guard ready for action
-			return status;
-		}else if(status == "break")
-		{ 			// on break status number = 1
-			status = "on break";
-			return status;
-		} else if(status == "position"){		// rotation status number = 2
-			status = "in position: " + position.name;
-			return status;
-		} else if (status == "home"){		// home status number = 3
-			status = "home";
-			return status;
-		} else if (status == "etc"){		// placeholder
-			status = "etc.";
-			return status;
-		}
-		else {
-		return status;	// returns error
-		}
+		status = st;
 	}
 // Position
 //

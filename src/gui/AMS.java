@@ -80,7 +80,6 @@ public class AMS extends JFrame implements ActionListener {
 	JLabel notificationLabel;
 	GuardManager MainManager;
 
-
 	public AMS(GuardManager main) {
 		
 		MainManager = main;
@@ -139,6 +138,7 @@ public class AMS extends JFrame implements ActionListener {
 
 		rotations.add(west, BorderLayout.WEST);
 		rotations.add(east, BorderLayout.EAST);
+		
 
 		// Edit panel for Find/Replace/Undo
 		edit = new JPanel();

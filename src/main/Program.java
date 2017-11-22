@@ -21,8 +21,6 @@ public class Program
 		//create the guard manager
 		GuardManager MainManager = new GuardManager(guards, rots);
 		
-		AMS UI = new AMS(MainManager);
-		
 		Guard[] initGuardList = new Guard[5];
 		initGuardList[0] = MainManager.GetGuard("Jane", "Doe");
 		initGuardList[1] = MainManager.GetGuard("Jon", "Doe");
@@ -60,9 +58,20 @@ public class Program
 		initGuardList[3] = MainManager.GetGuard("Quinn2", "OConnor2");
 		initGuardList[4] = MainManager.GetGuard("Quinn3", "OConnor3"); 
 		
+		MainManager.GetGuard("Brad", "Hennes").setStatus("on rotation");
+		
+		
+		
 		//Create the initial placement for rotation one
 		MainManager.GetRotation("Rotation 4").initGuards(initGuardList);		
 		
+		AMS UI = new AMS(MainManager);
+		
+		for(String line: MainManager.GetGuardList())
+		{
+			System.out.println(line);
+		}
+		System.out.println();
 		//UI.updateRotations(MainManager.getRotations);	
 	}
 }
