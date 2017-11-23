@@ -231,13 +231,36 @@ public class AMS extends JFrame implements ActionListener {
 		daily.add(home);
 		
 		//Table   
-		String column[]={"Name","Sch In","Sch Out", "Act In", "To Break", "From Break", "To Break", "From Break", "Act Out"};
-		String data[][]={{"Jean","8.00","4.00","","","","","",""}, 
-						{"Brad","9.00","5.00","","","","","",""}, 
-                			{"Hannah","8.00","5.00","","","","","",""}};
-		JTable table = new JTable (data,column);    
-		table.setBounds(30,40,200,300); 
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		try {
+	         Class.forName("com.mysql.jdbc.Driver");
+	      } catch(ClassNotFoundException e) {
+	         System.out.println("Class not found "+ e);
+	      }
+	      try {
+	         Connection con = DriverManager.getConnection(
+	            "jdbc:mysql://localhost:3306/","root", "1995");
+	         
+	         Statement stmt = con.createStatement();
+	         ResultSet rs = stmt.executeQuery("SELECT * FROM Algae.ScheduleWork");
+	         
+	         DefaultTableModel uitable = new DefaultTableModel(new String[]{"Name", "Day", "In", "Out"}, 0);
+       
+	         while (rs.next()) {
+	            String name = rs.getString("G_name");
+	            String day = rs.getString("Sch_day");
+	            String in = rs.getString("Sch_in_time");
+	            String out = rs.getString("Sch_out_time");
+	            
+	            uitable.addRow(new Object[]{name, day, in, out});
+
+	            JTable jtbl = new JTable(uitable);
+	            JScrollPane tbl = new JScrollPane(jtbl);
+	            daily.add(tbl);
+
+	         }
+	      } catch(SQLException e) {
+	         System.out.println("SQL exception occured" + e);
+	      }
 
 		// Breaks Tab
 		breaks = new JPanel();
