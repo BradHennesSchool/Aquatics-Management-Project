@@ -3,10 +3,13 @@ package gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableModel;
+
 import java.util.ArrayList;
 
 import model.*;
@@ -237,6 +240,7 @@ public class AMS extends JFrame implements ActionListener {
 	         System.out.println("Class not found "+ e);
 	      }
 	      try {
+	    	
 	         Connection con = DriverManager.getConnection(
 	            "jdbc:mysql://localhost:3306/","root", "1995");
 	         
