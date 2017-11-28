@@ -26,7 +26,7 @@ public class DatatoDB {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			
 			try {			
-				dbconn = DriverManager.getConnection(dbPath,"root","1111");		//1995 is my db password
+				dbconn = DriverManager.getConnection(dbPath,"root","1995");		//1995 is my db password
 				System.out.println("gain the connection");
 				return dbconn;
 			}

@@ -217,21 +217,7 @@ public class AMS extends JFrame implements ActionListener {
 		daily = new JPanel();
 		t.addTab("Daily", daily);
 
-		all = new JButton();
-		all.setText("All");
-		daily.add(all);
-
-		current = new JButton();
-		current.setText("Current");
-		daily.add(current);
-
-		later = new JButton();
-		later.setText("Later");
-		daily.add(later);
-
-		home = new JButton();
-		home.setText("Home");
-		daily.add(home);
+		
 		
 		//Table   
 		try {
