@@ -228,7 +228,7 @@ public class AMS extends JFrame implements ActionListener {
 	      try {
 	    	
 	         Connection con = DriverManager.getConnection(
-	            "jdbc:mysql://localhost:3306/","root", "1995");
+	            "jdbc:mysql://localhost:3306/","root", "1111");
 	         
 	         Statement stmt = con.createStatement();
 	         ResultSet rs = stmt.executeQuery("SELECT * FROM Algae.ScheduleWork");
@@ -261,7 +261,7 @@ public class AMS extends JFrame implements ActionListener {
 		breaks.add(ctrl, BorderLayout.NORTH);
 		breaks.add(sched, BorderLayout.SOUTH);
 
-		//String[] guards = { "Brad", "Hannah", "Jean", "Kevin", "Quinn" };
+		
 		sendwho = new JComboBox(updateBreaksdd());
 		sendwho.setPreferredSize(new Dimension(140, 22));
 		ctrl.add(sendwho);

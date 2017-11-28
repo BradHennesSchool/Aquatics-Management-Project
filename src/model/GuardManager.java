@@ -104,8 +104,11 @@ public class GuardManager {
 			return null;
 	}	
 	
-	public void SendGuardToBreak(Guard lg)
+	public void SendGuardToBreak(String lgName)
 	{
+		String fname = lgName.split(" ")[0];
+		String lname = lgName.split(" ")[1];
+		Guard lg = GetGuard(fname, lname);
 		lg.setBreakIn();
 		lg.setStatus("ready");
 	}
