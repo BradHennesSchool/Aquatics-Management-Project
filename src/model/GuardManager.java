@@ -20,9 +20,13 @@ public class GuardManager {
 		for(Rotation r: rotationList)
 		{
 			if(r.name.equals(RotName))
+			{
+				System.out.println(RotName + " found");
 				return r;
+			}
 		}
 		
+		System.out.println(RotName + " not found");
 		return null;
 	}
 	
@@ -49,8 +53,12 @@ public class GuardManager {
 		for(Guard lg: guardList)
 		{
 			if(lg.firstName.equals(fName) && lg.lastName.equals(lName))
+			{
+				System.out.println("returning guard: " + lg.firstName + " " + lg.lastName);
 				return lg;
+			}
 		}
+		System.out.println(fName + " " + lName + " " + "not found");
 		
 		return null;
 	}

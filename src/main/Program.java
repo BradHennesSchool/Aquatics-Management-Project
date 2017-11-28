@@ -31,27 +31,24 @@ public class Program
 		//Create the initial placement for rotation one
 		MainManager.GetRotation("Rotation 1").initGuards(initGuardList);
 		
-		Guard[] initGuardList2 = new Guard[5];
 		initGuardList[0] = MainManager.GetGuard("Jane2", "Doe2");
 		initGuardList[1] = MainManager.GetGuard("Jon", "Doe2");
 		initGuardList[2] = MainManager.GetGuard("Jean2", "Leow2");
 		initGuardList[3] = MainManager.GetGuard("Kevin2", "Eanes2");
 		initGuardList[4] = MainManager.GetGuard("Hannah2", "Lebakken2"); 
 		
-		//Create the initial placement for rotation one
-		MainManager.GetRotation("Rotation 2").initGuards(initGuardList2);
+		//Create the initial placement for rotation two
+		MainManager.GetRotation("Rotation 2").initGuards(initGuardList);
 		
-		Guard[] initGuardList3 = new Guard[5];
 		initGuardList[0] = MainManager.GetGuard("Jane3", "Doe3");
 		initGuardList[1] = MainManager.GetGuard("Jon3", "Doe3");
 		initGuardList[2] = MainManager.GetGuard("Jean3", "Leow3");
 		initGuardList[3] = MainManager.GetGuard("Kevin3", "Eanes3");
 		initGuardList[4] = MainManager.GetGuard("Hannah3", "Lebakken3"); 
 		
-		//Create the initial placement for rotation one
-		MainManager.GetRotation("Rotation 3").initGuards(initGuardList3);
+		//Create the initial placement for rotation three
+		MainManager.GetRotation("Rotation 3").initGuards(initGuardList);
 		
-		Guard[] initGuardList4 = new Guard[5];
 		initGuardList[0] = MainManager.GetGuard("Brad", "Hennes");
 		initGuardList[1] = MainManager.GetGuard("Brad2", "Hennes2");
 		initGuardList[2] = MainManager.GetGuard("Quinn", "OConnor");
@@ -59,8 +56,8 @@ public class Program
 		initGuardList[4] = MainManager.GetGuard("Quinn3", "OConnor3"); 
 		
 		
-		//Create the initial placement for rotation one
-		MainManager.GetRotation("Rotation 4").initGuards(initGuardList4);		
+		//Create the initial placement for rotation four
+		MainManager.GetRotation("Rotation 4").initGuards(initGuardList);		
 		
 		AMS UI = new AMS(MainManager);
 		
