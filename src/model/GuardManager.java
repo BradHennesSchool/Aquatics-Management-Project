@@ -54,7 +54,7 @@ public class GuardManager {
 		{
 			if(lg.firstName.equals(fName) && lg.lastName.equals(lName))
 			{
-				System.out.println("returning guard: " + lg.firstName + " " + lg.lastName);
+				System.out.println("get request: " + lg.firstName + " " + lg.lastName);
 				return lg;
 			}
 		}
@@ -121,9 +121,11 @@ public class GuardManager {
 		lg.setStatus("on break");
 	}
 	
-	public void ConfirmGuardBackFromBreak(Guard lg)
+	public void ConfirmGuardBackFromBreak(String lgName)
 	{
-		lg.setBreakOut();
+		String fname = lgName.split(" ")[0];
+		String lname = lgName.split(" ")[1];
+		Guard lg = GetGuard(fname, lname);
 		lg.setStatus("ready");
 	}
 	

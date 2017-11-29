@@ -271,6 +271,7 @@ public class AMS extends JFrame implements ActionListener {
 
 		send = new JButton();
 		send.setText("Send");
+		send.addActionListener(this);
 		ctrl.add(send);
 		
 		onbreak = new JComboBox(onBreaksdd());
@@ -279,6 +280,7 @@ public class AMS extends JFrame implements ActionListener {
 		
 		onB = new JButton();
 		onB.setText("On Break");
+		onB.addActionListener(this);
 		ctrl.add(onB);
 
 
@@ -308,6 +310,7 @@ public class AMS extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		currentTime();
 		
+		
 		 if (e.getSource() instanceof JButton) {
 	            JButton clickedButton = (JButton) e.getSource();
 	            
@@ -315,7 +318,30 @@ public class AMS extends JFrame implements ActionListener {
 	            
 	            if (clickedButton == send) 
 	            {
-	            	System.out.println(sendwho.getSelectedItem());
+	            	String guard = sendwho.getSelectedItem().toString();
+	            	MainManager.SendGuardToBreak(guard);
+	            	sendwho.removeAllItems();
+	            	onbreak.removeAllItems();
+	            	
+	            	for(String lg: updateBreaksdd())
+	            		sendwho.addItem(lg);
+	            	
+	            	for(String lg: onBreaksdd())
+	            		onbreak.addItem(lg);
+	            }
+	            
+	            if (clickedButton == onB) 
+	            {
+	            	String guard = onbreak.getSelectedItem().toString();
+	            	MainManager.ConfirmGuardBackFromBreak(guard);
+	            	sendwho.removeAllItems();
+	            	onbreak.removeAllItems();
+	            	
+	            	for(String lg: updateBreaksdd())
+	            		sendwho.addItem(lg);
+	            	
+	            	for(String lg: onBreaksdd())
+	            		onbreak.addItem(lg);
 	            }
 		 }
 	}
