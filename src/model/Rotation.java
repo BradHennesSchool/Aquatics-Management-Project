@@ -6,7 +6,7 @@ public class Rotation
 {
 	String name;
 	int ageReq;
-	boolean pushing;
+	public boolean pushing;
 	Guard ReturningGuard;
 	Date LastPush;
 	Position[] Positions;
@@ -62,6 +62,9 @@ public class Rotation
 		pushing = true;
 		LastPush = new Date();
 		ReturningGuard = retGuard;
+		
+		retGuard.setStatus("ready");
+		newGuard.setStatus("on rotation");
 		
 		return retGuard;
 	}

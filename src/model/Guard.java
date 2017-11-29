@@ -56,6 +56,10 @@ public class Guard {
 		return sf.format(intime);
 	}
 	
+	public String getName ()
+	{
+		return firstName + " " + lastName;
+	}
 	
 // Time out
 //

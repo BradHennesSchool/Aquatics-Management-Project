@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 import java.util.ArrayList;
@@ -35,13 +37,14 @@ public class AMS extends JFrame implements ActionListener {
 	}
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy | h:mm:ss a");
+	private SimpleDateFormat rotFormat = new SimpleDateFormat("h:mm:ss");
 
 	// Component Arrays
 
-	JPanel[] panels = new JPanel[9];
-	JButton[] buttons = new JButton[9];
-	JLabel[] timeLabels = new JLabel[9];
-	JLabel[] rotationLabels = new JLabel[9];
+	JPanel[] panels = new JPanel[4];
+	JButton[] buttons = new JButton[4];
+	JLabel[] timeLabels = new JLabel[4];
+	JLabel[] rotationLabels = new JLabel[4];
 	
 	JPanel[] confirmationPanels = new JPanel[4];
 	JLabel[] timeLabelsConfirmation = new JLabel[4];
@@ -75,9 +78,10 @@ public class AMS extends JFrame implements ActionListener {
 	JPanel breaks;
 	JPanel ctrl;
 	JPanel sched;
-	JComboBox sendwho;
+	JComboBox sendwho = new JComboBox();
 	JButton send;
-	JComboBox onbreak;
+	JComboBox onbreak = new JComboBox();
+	JComboBox maindd = new JComboBox();
 	JButton onB;
 	JTable table;
 
@@ -130,6 +134,30 @@ public class AMS extends JFrame implements ActionListener {
 		// Tab interface
 		JTabbedPane t = new JTabbedPane();
 
+		t.addChangeListener
+		(
+			new ChangeListener() 
+			{
+				public void stateChanged(ChangeEvent c) 
+				{		
+					
+					sendwho.removeAllItems();
+	            	onbreak.removeAllItems();
+	            	maindd.removeAllItems();
+	            	
+	            	for(String lg: mainGuarddd())
+	            		maindd.addItem(lg);
+	            	
+	            	for(String lg: updateBreaksdd())
+	            		sendwho.addItem(lg);
+	            	
+	            	for(String lg: onBreaksdd())
+	            		onbreak.addItem(lg);
+	            		
+				}
+			}
+		);
+		
 		// Rotations Tab
 		rotations = new JPanel();
 		t.addTab("Rotations", rotations);
@@ -142,32 +170,19 @@ public class AMS extends JFrame implements ActionListener {
 		east = new JPanel();
 
 		rotations.add(west, BorderLayout.WEST);
-		rotations.add(east, BorderLayout.EAST);
 		
-
-		// Edit panel for Find/Replace/Undo
-		edit = new JPanel();
-		//edit.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-		west.add(edit, BorderLayout.NORTH);
-
-		// Find/Replace/Undo buttons
-		replace = new JButton();
-		find = new JButton();
-		undo = new JButton();
-
-		replace.setText("Replace");
-		find.setText("Find");
-		undo.setText("Undo");
-
-		edit.add(find);
-		edit.add(replace);
-		edit.add(undo);
+		
 
 		information = new JPanel();
 		information.setLayout(new BoxLayout(information, BoxLayout.Y_AXIS));
 		//information.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		west.add(information);
+		maindd = new JComboBox(mainGuarddd());
+		maindd.setPreferredSize(new Dimension(140, 22));
+		
+		information.add(maindd);
 
+		
 		// Rotation labels / panels / buttons
 		for (int i = 0; i < panels.length; i++) {
 
@@ -178,43 +193,22 @@ public class AMS extends JFrame implements ActionListener {
 			panels[i].add(timeLabels[i]);
 			panels[i].add(rotationLabels[i]);
 			panels[i].add(buttons[i]);
+			panels[i].add(rotationLabelsConfirmation[i]);
+			panels[i].add(buttonsConfirmation[i]);
 
 			// set text (debugging)
 			timeLabels[i].setText("Time " + i);
-			rotationLabels[i].setText("Rotations " + i);
-			buttons[i].setText("Buttons " + i);
-
+			rotationLabels[i].setText("Rotation " + (i + 1));
+			buttons[i].setText("Push");
+			buttons[i].addActionListener(this);
+			rotationLabelsConfirmation[i].setText("Not pushing");
+			buttonsConfirmation[i].setText("Confirm Rotation");
+			buttonsConfirmation[i].addActionListener(this);
+			
+			
 			panels[i].setVisible(true);
-
 		}
 		
-		// Confirmation panel for pushing rotations
-		confirmation = new JPanel();
-		confirmation.setLayout(new BoxLayout(confirmation, BoxLayout.Y_AXIS));
-		//confirmation.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-		east.add(confirmation);
-		
-		// Confirmation labels / panels / text boxes / buttons
-		
-		for (int i = 0; i < confirmationPanels.length; i++) {
-			
-			// add panels
-			confirmation.add(confirmationPanels[i]);
-			
-			// add components to panels
-			confirmationPanels[i].add(timeLabelsConfirmation[i]);
-			confirmationPanels[i].add(rotationLabelsConfirmation[i]);
-			confirmationPanels[i].add(buttonsConfirmation[i]);
-			confirmationPanels[i].add(textBox[i]);
-			
-			// set text (debugging)
-			timeLabelsConfirmation[i].setText("Time " + i);
-			rotationLabelsConfirmation[i].setText("Rotations " + i);
-			buttonsConfirmation[i].setText("Buttons " + i);
-			textBox[i].setText("Text Box " + i);
-		}
-		
-
 		// Daily Tab
 		daily = new JPanel();
 		t.addTab("Daily", daily);
@@ -307,48 +301,104 @@ public class AMS extends JFrame implements ActionListener {
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) 
+	{
 		currentTime();
 		
 		
-		 if (e.getSource() instanceof JButton) {
-	            JButton clickedButton = (JButton) e.getSource();
-	            
-	            System.out.println("Button pressed");
-	            
-	            if (clickedButton == send) 
-	            {
-	            	String guard = sendwho.getSelectedItem().toString();
-	            	MainManager.SendGuardToBreak(guard);
-	            	sendwho.removeAllItems();
-	            	onbreak.removeAllItems();
-	            	
-	            	for(String lg: updateBreaksdd())
-	            		sendwho.addItem(lg);
-	            	
-	            	for(String lg: onBreaksdd())
-	            		onbreak.addItem(lg);
-	            }
-	            
-	            if (clickedButton == onB) 
-	            {
-	            	String guard = onbreak.getSelectedItem().toString();
-	            	MainManager.ConfirmGuardBackFromBreak(guard);
-	            	sendwho.removeAllItems();
-	            	onbreak.removeAllItems();
-	            	
-	            	for(String lg: updateBreaksdd())
-	            		sendwho.addItem(lg);
-	            	
-	            	for(String lg: onBreaksdd())
-	            		onbreak.addItem(lg);
-	            }
+		 if (e.getSource() instanceof JButton) 
+		 {
+            JButton clickedButton = (JButton) e.getSource();
+            
+            System.out.println("Button pressed");
+            
+            if (clickedButton == send) 
+            {
+            	String guard = sendwho.getSelectedItem().toString();
+            	MainManager.SendGuardToBreak(guard);
+            	sendwho.removeAllItems();
+            	onbreak.removeAllItems();
+            	
+            	for(String lg: updateBreaksdd())
+            		sendwho.addItem(lg);
+            	
+            	for(String lg: onBreaksdd())
+            		onbreak.addItem(lg);
+            }
+            
+            if (clickedButton == onB) 
+            {
+            	String guard = onbreak.getSelectedItem().toString();
+            	MainManager.ConfirmGuardBackFromBreak(guard);
+            	sendwho.removeAllItems();
+            	onbreak.removeAllItems();
+            	
+            	for(String lg: updateBreaksdd())
+            		sendwho.addItem(lg);
+            	
+            	for(String lg: onBreaksdd())
+            		onbreak.addItem(lg);
+            }
+            
+            for(int i = 0; i < 4; ++i)
+            {
+            	if(clickedButton.equals(buttons[i]))
+            	{
+            		Rotation rot = MainManager.GetRotation("Rotation " + (i + 1));
+            		
+            		if(!rot.pushing)
+            		{
+            			rot.pushing = true;
+            			String fname = maindd.getSelectedItem().toString().split(" ")[0];
+            			String lname = maindd.getSelectedItem().toString().split(" ")[1];
+            			Guard lg = MainManager.GetGuard(fname, lname);
+            			
+            			Guard retG = rot.Push(lg);
+            			
+            			rotationLabelsConfirmation[i].setText(retG.getName() + " returning");
+            			
+            			timeLabels[i].setText(retCurrentTime());
+            			
+            			maindd.removeAllItems();
+                    	
+                    	for(String updatedGuards: mainGuarddd())
+                    		maindd.addItem(updatedGuards);
+            		}
+            	}
+            	
+            	if(clickedButton.equals(buttonsConfirmation[i]))
+            	{
+            		Rotation rot = MainManager.GetRotation("Rotation " + (i + 1));
+            		
+            		if(rot.pushing)
+            		{
+            			rot.pushing = false;
+            			
+            			String fname = rotationLabelsConfirmation[i].getText().split(" ")[0];
+            			String lname = rotationLabelsConfirmation[i].getText().split(" ")[1];
+            			Guard lg = MainManager.GetGuard(fname, lname);
+            			
+            			MainManager.ConfirmRotationPushed(lg, rot);
+            			
+            			rotationLabelsConfirmation[i].setText("Not Pushing");
+            			
+						maindd.removeAllItems();
+                    	
+                    	for(String updatedGuards: mainGuarddd())
+                    		maindd.addItem(updatedGuards);
+            		}
+            	}
+            }
 		 }
 	}
 
 	// Updates JLabel time
 	public void currentTime() {
 		time.setText(dateFormat.format(Calendar.getInstance().getTime()));
+	}
+	
+	public String retCurrentTime() {
+		return rotFormat.format(Calendar.getInstance().getTime());
 	}
 	
 	public String[] updateBreaksdd()
@@ -368,6 +418,20 @@ public class AMS extends JFrame implements ActionListener {
 	public String[] onBreaksdd()
 	{
 		ArrayList<String> Guards = MainManager.getGuard2(false, new String[]{"on break"});
+		String[] GuardArray = new String[Guards.size()];
+		int i = 0;
+		for(String s: Guards)
+		{
+			GuardArray[i] = s;
+			++i;
+		}
+		
+		return GuardArray;
+	}
+	
+	public String[] mainGuarddd()
+	{
+		ArrayList<String> Guards = MainManager.getGuard2(false, new String[]{"ready"});
 		String[] GuardArray = new String[Guards.size()];
 		int i = 0;
 		for(String s: Guards)
