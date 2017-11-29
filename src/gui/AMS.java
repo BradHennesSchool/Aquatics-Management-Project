@@ -77,6 +77,8 @@ public class AMS extends JFrame implements ActionListener {
 	JPanel sched;
 	JComboBox sendwho;
 	JButton send;
+	JComboBox onbreak;
+	JButton onB;
 	JTable table;
 
 	JPanel notifications;
@@ -270,6 +272,14 @@ public class AMS extends JFrame implements ActionListener {
 		send = new JButton();
 		send.setText("Send");
 		ctrl.add(send);
+		
+		onbreak = new JComboBox(onBreaksdd());
+		onbreak.setPreferredSize(new Dimension(140, 22));
+		ctrl.add(onbreak);
+		
+		onB = new JButton();
+		onB.setText("On Break");
+		ctrl.add(onB);
 
 
 		// Notification Panel
@@ -318,6 +328,20 @@ public class AMS extends JFrame implements ActionListener {
 	public String[] updateBreaksdd()
 	{
 		ArrayList<String> Guards = MainManager.getGuard2(false, new String[]{"ready"});
+		String[] GuardArray = new String[Guards.size()];
+		int i = 0;
+		for(String s: Guards)
+		{
+			GuardArray[i] = s;
+			++i;
+		}
+		
+		return GuardArray;
+	}
+	
+	public String[] onBreaksdd()
+	{
+		ArrayList<String> Guards = MainManager.getGuard2(false, new String[]{"on break"});
 		String[] GuardArray = new String[Guards.size()];
 		int i = 0;
 		for(String s: Guards)
