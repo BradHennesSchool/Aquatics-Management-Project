@@ -140,7 +140,6 @@ public class AMS extends JFrame implements ActionListener {
 			{
 				public void stateChanged(ChangeEvent c) 
 				{		
-					
 					sendwho.removeAllItems();
 	            	onbreak.removeAllItems();
 	            	maindd.removeAllItems();
@@ -153,7 +152,6 @@ public class AMS extends JFrame implements ActionListener {
 	            	
 	            	for(String lg: onBreaksdd())
 	            		onbreak.addItem(lg);
-	            		
 				}
 			}
 		);
@@ -197,7 +195,7 @@ public class AMS extends JFrame implements ActionListener {
 			panels[i].add(buttonsConfirmation[i]);
 
 			// set text (debugging)
-			timeLabels[i].setText("Time " + i);
+			timeLabels[i].setText(retCurrentTime());
 			rotationLabels[i].setText("Rotation " + (i + 1));
 			buttons[i].setText("Push");
 			buttons[i].addActionListener(this);
@@ -352,7 +350,7 @@ public class AMS extends JFrame implements ActionListener {
             			String fname = maindd.getSelectedItem().toString().split(" ")[0];
             			String lname = maindd.getSelectedItem().toString().split(" ")[1];
             			Guard lg = MainManager.GetGuard(fname, lname);
-            			
+            			//lg.setStatus("on rotation");
             			Guard retG = rot.Push(lg);
             			
             			rotationLabelsConfirmation[i].setText(retG.getName() + " returning");

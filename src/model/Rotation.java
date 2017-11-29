@@ -63,7 +63,7 @@ public class Rotation
 		LastPush = new Date();
 		ReturningGuard = retGuard;
 		
-		retGuard.setStatus("ready");
+		//retGuard.setStatus("ready");
 		newGuard.setStatus("on rotation");
 		
 		return retGuard;
