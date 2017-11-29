@@ -264,6 +264,7 @@ public class AMS extends JFrame implements ActionListener {
 		
 		sendwho = new JComboBox(updateBreaksdd());
 		sendwho.setPreferredSize(new Dimension(140, 22));
+		
 		ctrl.add(sendwho);
 
 		send = new JButton();
@@ -296,6 +297,17 @@ public class AMS extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		currentTime();
+		
+		 if (e.getSource() instanceof JButton) {
+	            JButton clickedButton = (JButton) e.getSource();
+	            
+	            System.out.println("Button pressed");
+	            
+	            if (clickedButton == send) 
+	            {
+	            	System.out.println(sendwho.getSelectedItem());
+	            }
+		 }
 	}
 
 	// Updates JLabel time

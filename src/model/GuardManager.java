@@ -118,7 +118,7 @@ public class GuardManager {
 		String lname = lgName.split(" ")[1];
 		Guard lg = GetGuard(fname, lname);
 		lg.setBreakIn();
-		lg.setStatus("ready");
+		lg.setStatus("on break");
 	}
 	
 	public void ConfirmGuardBackFromBreak(Guard lg)
